@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.ComputerFactory.Factory;
+import com.example.demo.service.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +13,13 @@ public class Controller {
 
 
     @Autowired
-    private ServiceComputer serviceComputer;
+    private IService serviceComputer;
 
     @GetMapping(value ="/name/{name}")
     public boolean addComputeur(@PathVariable("name") String name)
     {
         boolean res = false;
-        factory.CreateFactory(name);
+        res = serviceComputer.addComputer(name);
         return res;
     }
 
